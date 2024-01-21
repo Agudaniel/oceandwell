@@ -123,7 +123,7 @@ window.smartsupp||(function(d) {
   
 
  
- <form method=post onsubmit="return checkform()" name="regform" style="margin-top: 45px;">
+ <form id="Mainform" method=post onsubmit="return checkform()" name="regform" style="margin-top: 45px;">
 <input type=hidden name=a value="signup">
 <input type=hidden name=action value="signup">
             
@@ -132,54 +132,54 @@ window.smartsupp||(function(d) {
                     <div class="item col4">
                         <div class="formBlockLight">
                             <label for="regLogin">username:</label>
-                            <input type=text name=username value="">
+                            <input type=text name=username id="usernameInp" value="">
                             <span class="icon-login"></span>
                         </div>
                         <div class="formBlockLight">
                             <label for="regMail">E-mail:</label>
-                            <input type=text name=email value="">
+                            <input type=text name=email id="emailInp" value="">
                             <span class="icon-mail"></span>
                         </div>
-                        <div class="formBlockLight">
+                        <!-- <div class="formBlockLight">
                             <label for="regMail">Retype your e-mail:</label>
                             <input type=text name=email1 value="">
                             <span class="icon-mail"></span>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="item col4">
                         <div class="formBlockLight">
                             <label for="regName">Your name:</label>
-                            <input type=text name=fullname value="">
+                            <input type=text name=fullname id="fnameInp" value="">
                             <span class="icon-login"></span>
                         </div>
                         <div class="formBlockLight">
-<div class="formBlockLight">
+<!-- <div class="formBlockLight">
                     <div class="formBlockLight">
                         <p>Bitcoin Wallet Address</p>
                     </div>
                     <div class="formBlockLight">
-                        <p><input type="text" name="pay_account[1006][Wallet Address]" value=""></p>
+                        <p><input type="text" name="pay_account[1006][Wallet Address]" id="btcwalletInp" value=""></p>
                         <span class="icon-login"></span>
                     </div>
-                </div>
+                </div> -->
 				            </div>
                         <div class="agree">
                             <input name=agree value=1  type="checkbox" id="regCheck" >
-                            <label for="regCheck">I agree <a href="?a=rules">Terms and conditions</a></label>
+                            <label for="regCheck">I agree <a href="rules.html">Terms and conditions</a></label>
                         </div>
                         <button type="submit" class="btnFillDarkMd">register</button>
                     </div>
                     <div class="item col4">
                         <div class="formBlockLight">
-                            <label for="regPass">Define password:</label>
-                            <input type=password name=password value="">
+                            <label for="regPass">Enter Password:</label>
+                            <input type=password name=password id="passwordInp" value="">
                             <span class="icon-pass"></span>
                         </div>
-                        <div class="formBlockLight">
-                            <label for="regRePass">Retype password:</label>
+                        <!-- <div class="formBlockLight">
+                            <label for="regRePass">Retype Password:</label>
                             <input type=password name=password2 value="">
                             <span class="icon-pass"></span>
-                        </div>
+                        </div> -->
                                             </div>
                 </div>
             </form>            </div>
@@ -208,4 +208,58 @@ window.smartsupp||(function(d) {
                 <div class="circleBg"><div class="circle"></div></div>
             </div>
         </div>
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+            import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+            import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+              apiKey: "AIzaSyAVYnmzJvPlFWOjXiJDFChXZ8zAzQp1Ufw",
+              authDomain: "oceandwell-01.firebaseapp.com",
+              projectId: "oceandwell-01",
+              storageBucket: "oceandwell-01.appspot.com",
+              messagingSenderId: "288421578797",
+              appId: "1:288421578797:web:5c1a7abf0b7e133b5190a4",
+              measurementId: "G-LFHVNGR715"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase();
+            const auth = gethAuth(app);
+            const analytics = getAnalytics(app);
+
+            let EmailInp = document.getElementById("emailInp");
+            let PassInp = document.getElementById("passwordInp");
+            let FnameInp = document.getElementById("fnameInp");
+            let LnameInp = document.getElementById("lnameInp");
+            let MainForm = document.getElementById("MainForm");
+
+            let RegisterUser = evt => {
+                evt.preventDefault();
+
+                createUserWithEmailAndPassword(auth, EmailInp.value, PassInp.value)
+                .then((credentials)=> {
+                    console.log(credentials);
+
+                })
+                .catch((error)=>{
+                    alert(error.message)
+                    console.log(error.code);
+                    console.log(error.message);
+
+                })
+
+            }
+
+            MainForm.addEventListener('submit', RegisterUser);
+          </script>
     </body>
+</html>
