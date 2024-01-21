@@ -74,7 +74,9 @@ textarea {
   -webkit-outline: none;
   -moz-outline: none;
   outline: none;
-  background: #fff;
+
+  background: #0f0f11;
+  /* background: #fff; */
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -875,7 +877,9 @@ span.color2 {
 
 .topLine {
   padding-top: 26px;
-  min-height: 108px; }
+  min-height: 108px;
+  background-color: #0f0f11;
+ }
   .topLine .logoWrap {
     width: 180px; }
     .topLine .logoWrap .logo {
@@ -936,12 +940,12 @@ span.color2 {
       .topLine .clock .date .day {
         font-size: 13px;
         line-height: 16px;
-        color: #202b2f;
+        color: #e6f846;
         font-weight: normal; }
       .topLine .clock .date .year {
         font-size: 15px;
         line-height: 1;
-        color: #202b2f;
+        color: #e6f846;
         font-weight: bold;
         letter-spacing: 0.025em; }
   .topLine .userBlock {
@@ -1001,7 +1005,7 @@ span.color2 {
         color: #44d29d; }
 
 footer {
-  background-color: #202b2f;
+  background-color: #0f0f11;
   padding: 70px 0px; }
   footer .footCol {
     float: left;
@@ -1066,7 +1070,7 @@ footer {
     footer .cont .title {
       font-size: 15px;
       line-height: 1;
-      color: #44d29d;
+      color: #e6f846;
       font-weight: 500;
       letter-spacing: 0.02em;
       text-transform: uppercase; }
@@ -1096,11 +1100,14 @@ footer {
       margin-top: 20px; }
 
 .mainBanner {
+  width: 100%;
   position: relative;
   padding: 95px 0px;
   z-index: 1;
-  background-position: center top;
-  background-repeat: no-repeat; }
+  background-position: contain;
+  background-repeat: no-repeat; 
+}
+
   .mainBanner .content {
     text-align: right; }
     .mainBanner .content .heading + * {
